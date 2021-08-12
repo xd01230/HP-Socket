@@ -6,7 +6,7 @@ set LIBS_OUT=.\lib\android-ndk
 set OBJ_OUT=.\lib\android-ndk\obj
 
 
-cd %~dp0
+cd /d %~dp0..\
 
 if exist %LIBS_OUT% (
 	rd /s /q %LIBS_OUT%
@@ -21,7 +21,7 @@ call :cp_static_lib x86
 
 rd /s /q %OBJ_OUT%
 
-cd %CURPATH%
+cd /d %CURPATH%
 
 exit /b 0
 

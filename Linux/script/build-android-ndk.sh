@@ -2,7 +2,7 @@
 
 set -e
 
-cd $(cd "$(dirname "$0")"; pwd)
+cd $(cd "$(dirname "$0")/.."; pwd)
 
 PROJECT_PATH=./project/android-ndk
 LIBS_OUT=./lib/android-ndk

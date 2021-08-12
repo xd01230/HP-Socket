@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGE_PATH=$(cd "$(dirname "$0")"; pwd)
+PACKAGE_PATH=$(cd "$(dirname "$0")/.."; pwd)
 SH_NAME=$(basename "$0")
 SCRIPT_DIR=script
 

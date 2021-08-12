@@ -1,8 +1,10 @@
 @echo off
 
-echo --------------------------------------------------
+set cur_path=%cd%
 
-call copy.bat
+cd /d %~dp0..\
+
+echo --------------------------------------------------
 
 set all=%1
 
@@ -19,19 +21,18 @@ del *.aps /f /s /q
 del *.cki /f /s /q
 del *.exe.config /f /s /q
 
-for /f "delims=" %%i in ('dir /ad /b /s "obj"') do (
-   rd /s /q "%%i"
-)
-
-for /f "delims=" %%i in ('dir /ad /b /s ".vs"') do (
-   rd /s /q "%%i"
-)
-
-for /f "delims=" %%i in ('dir /ad /b /s "netstandard2.0"') do (
-   rd /s /q "%%i"
-)
+del "Other Languages\E\*.exe" /f /s /q
 
 rd /s /q "Demo\Debug"
+
+for %%i in (Project Lib Demo) do (
+	for %%j in (ipch obj .vs) do (
+		for /f "delims=" %%k in ('dir /ad /b /s "%%i\%%j"') do (
+		   rd /s /q "%%k"
+		)
+	rd /s /q "%%i\%%j"
+	)
+)
 
 set /a x=0
 
@@ -44,14 +45,10 @@ if "%all%"=="-a" (
 )
 
 if %x% geq 1 (
-	for /f "delims=" %%i in ('dir /ad /b /s "static"') do (
-		rd /s /q "%%i"
-	)
-	
 	del *.pdb /f /s /q
 )
 
-del "Other Languages\E\*.exe" /f /s /q
-
 echo --------------------------------------------------
 echo bye~ bye~
+
+cd /d %cur_path%
